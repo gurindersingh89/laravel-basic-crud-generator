@@ -54,9 +54,9 @@ class CrudGenerator extends Command
 
 
         if ($is_api)
-            File::append(base_path('routes/api.php'), "\n" . 'Route::resource(\'' . Str::plural(strtolower($name)) . "', [{$name}Controller::class]);");
+            File::append(base_path('routes/api.php'), "\n" . 'Route::resource(\'' . Str::plural(strtolower($name)) . "', {$name}Controller::class);");
         else
-            File::append(base_path('routes/web.php'), 'Route::resource(\'' . Str::plural(strtolower($name)) . "', '{$name}Controller');");
+            File::append(base_path('routes/web.php'), 'Route::resource(\'' . Str::plural(strtolower($name)) . "', {$name}Controller::class);");
     }
 
     protected function getStub($type)
