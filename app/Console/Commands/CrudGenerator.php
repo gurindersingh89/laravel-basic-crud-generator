@@ -117,11 +117,13 @@ class CrudGenerator extends Command
         $migrationTemplate = str_replace(
             [
                 '{{modelName}}',
+                '{{modelNamePlural}}',
                 '{{modelNamePluralLowerCase}}',
                 '{{modelNameSingularLowerCase}}'
             ],
             [
                 $name,
+                Str::plural($name),
                 strtolower(Str::plural($name)),
                 strtolower($name)
             ],
