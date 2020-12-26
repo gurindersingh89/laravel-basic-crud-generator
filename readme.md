@@ -12,12 +12,15 @@ Laravel 8 Basic Crud Generator With Sanctum Auth
 
 Run the following command:
 
+``` shell
 php artisan crud:generator Car
+```
 
 For Api
 
+``` shell
 php artisan crud:generator Car --api
-
+```
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
