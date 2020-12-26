@@ -53,10 +53,13 @@ class CrudGenerator extends Command
         $this->migrate($name);
 
 
-        if ($is_api)
-            File::append(base_path('routes/api.php'), "\n" . 'Route::resource(\'' . Str::plural(strtolower($name)) . "', {$name}Controller::class);");
+        $plural_name = Str::plural(strtolower($name));
+        if ($is_api){
+            File::append(base_path('routes/api.php'), "\n" . 'Route::post(\'' . $plural_name . "/datatable', [{$name}Controller::class, 'datatable']);");
+            File::append(base_path('routes/api.php'), "\n" . 'Route::resource(\'' . $plural_name . "', {$name}Controller::class);");
+        }
         else
-            File::append(base_path('routes/web.php'), 'Route::resource(\'' . Str::plural(strtolower($name)) . "', {$name}Controller::class);");
+            File::append(base_path('routes/web.php'), 'Route::resource(\'' . $plural_name . "', {$name}Controller::class);");
     }
 
     protected function getStub($type)
