@@ -53,7 +53,7 @@ class CrudGenerator extends Command
         $this->migrate($name);
 
 
-        $plural_name = Str::plural(strtolower($name));
+        $plural_name = Str::plural(Str::lower($name));
         if ($is_api){
             File::append(base_path('routes/api.php'), "\n" . 'Route::post(\'' . $plural_name . "/datatable', [{$name}Controller::class, 'datatable']);");
             File::append(base_path('routes/api.php'), "\n" . 'Route::resource(\'' . $plural_name . "', {$name}Controller::class);");
@@ -81,8 +81,8 @@ class CrudGenerator extends Command
             ],
             [
                 $name,
-                strtolower(Str::plural($name)),
-                strtolower($name)
+                Str::lower(Str::plural($name)),
+                Str::lower($name)
             ],
             $this->getStub($c_name)
         );
@@ -93,8 +93,14 @@ class CrudGenerator extends Command
     protected function request($name)
     {
         $requestTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
+            [
+                '{{modelName}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                Str::lower($name)
+            ],
             $this->getStub('Request')
         );
 
@@ -127,12 +133,12 @@ class CrudGenerator extends Command
             [
                 $name,
                 Str::plural($name),
-                strtolower(Str::plural($name)),
-                strtolower($name)
+                Str::lower(Str::plural($name)),
+                Str::lower($name)
             ],
             $this->getStub('Migration')
         );
 
-        file_put_contents(database_path("/migrations/" . Carbon::now()->format('Y_m_d') . "_000009_create_" . Str::plural(strtolower($name)) . "_table.php"), $migrationTemplate);
+        file_put_contents(database_path("/migrations/" . Carbon::now()->format('Y_m_d') . "_000009_create_" . Str::plural(Str::lower($name)) . "_table.php"), $migrationTemplate);
     }
 }

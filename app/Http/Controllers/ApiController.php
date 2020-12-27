@@ -152,7 +152,6 @@ class ApiController extends Controller
         $data = $object->paginate($paginated, $columns, 'page', $from_paginate)->toArray();
 
         $response['status'] = true;
-        $response['t'] = $from_paginate;
         !empty($data) ? $response['data'] = $data['data'] : null;
         !empty($data) ? $response['total'] = $data['total'] : null;
         !empty($data) ? $response['from'] = $data['from'] : 0;

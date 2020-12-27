@@ -14,6 +14,9 @@ use App\Http\Controllers\Auth\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::any('test', function(){
+    return 'TESTED';
+});
 
 //Login And Sign Up Routes
 Route::prefix('auth')->group(function(){
