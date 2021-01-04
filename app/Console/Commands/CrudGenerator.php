@@ -14,7 +14,7 @@ class CrudGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:generator
+    protected $signature = 'make:crud
     {name : Class (singular) for example User}
     {--api}';
 

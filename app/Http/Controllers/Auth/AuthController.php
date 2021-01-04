@@ -39,6 +39,9 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email|exists:users,email',
             'password' => 'required'
+        ],
+        [
+            'email.exists' => 'Email Doesn\'t Exists'
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -53,7 +56,10 @@ class AuthController extends Controller
                 'token' => $token
             ]);
         }else{
-            return response(['message' => 'Invalid Credentials', 'status' => false]);
+            return response()->json([
+                'status' => false,
+                'errors' => ['message' => ['Incorrect Password']]
+            ], 401);
         }
     }
 

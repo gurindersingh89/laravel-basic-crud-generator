@@ -13,13 +13,13 @@ Laravel 8 Basic Crud Generator With Sanctum Auth
 Run the following command:
 
 ``` shell
-php artisan crud:generator Car
+php artisan make:crud Example
 ```
 
 For Api
 
 ``` shell
-php artisan crud:generator Car --api
+php artisan make:crud Example --api
 ```
 ## About Laravel
 
